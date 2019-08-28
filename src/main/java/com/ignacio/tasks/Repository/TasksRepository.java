@@ -12,9 +12,9 @@ import java.util.List;
 @Repository("TasksRepository")
 public interface TasksRepository extends CrudRepository<Tarea, Serializable> {
 
-	@Query(value = "SELECT * FROM Tareas WHERE Tipo = :tipo",nativeQuery = true)
-	public List<Tarea> listarArchivosPorTipo(@Param("tipo") String tipoArchivo);
-	
-	@Query(value = "SELECT count(tipo) FROM Tareas WHERE Tipo= :tipo",nativeQuery = true)
-	public int CantidadDeCadaTipo(@Param("tipo") String CantidadDeContenido);
+//	@Query(value = "SELECT * FROM Tareas WHERE Tipo = :tipo",nativeQuery = true)
+//	public List<Tarea> listarArchivosPorTipo(@Param("tipo") String tipoArchivo);
+//	
+//	@Query(value = "SELECT count(tipo) FROM Tareas WHERE Tipo= :tipo",nativeQuery = true)
+//	public int CantidadDeCadaTipo(@Param("tipo") String CantidadDeContenido);
 }

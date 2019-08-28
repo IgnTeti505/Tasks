@@ -1,4 +1,4 @@
-package com.ignacio.tasks.Service.Implements;
+package com.ignacio.tasks.Service;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ public interface TasksService {
     public boolean updateTask(Tarea tarea);
     public boolean deleteTask(Tarea tarea);
     public Tarea getTask(int taskID);
-    public List<Tarea> listaArchivos();
+    public List<Tarea> listaTareas();
     
     	
 }
