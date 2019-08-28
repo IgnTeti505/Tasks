@@ -1,6 +1,6 @@
 // Servici que se ocupa
 // factory
-APP.TasksApp.factory("factory", function ($http, $q) {
+APP.factory("factory", function ($http, $q) {
     return {
         get: function (url) {
             return $http({ url: '/' + url, method: 'GET' }).then(

@@ -1,7 +1,7 @@
 APP.service('tareaService', ($q, factory) => {
     const SELF = this;
     // nombre del restController
-    const PATH = 'Tarea';
+    const PATH = 'tarea';
 
     SELF.get = () => {
         return $q((success, error) => {
@@ -17,7 +17,7 @@ APP.service('tareaService', ($q, factory) => {
     // recibe url y data
     SELF.post = (tarea) => {
         return $q((success, error) => {
-            factory.get(PATH, ).then(
+            factory.post(PATH, data).then(
                 (resolve) => {
                     success(resolve)
                 },
@@ -26,7 +26,11 @@ APP.service('tareaService', ($q, factory) => {
                 })
         })
     }
-    SELF.put()
+    SELF.put() = (tarea) => {
+        return $q((success, error) => {
+            factory.put(PATH)
+        })
+    }
     SELF.delete()
     // realizar conttrolador y terminar el REST
 })
