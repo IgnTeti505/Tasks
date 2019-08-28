@@ -1,7 +1,9 @@
-package com.ignacio.Controllers;
+package com.ignacio.tasks.Controllers;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,7 +25,8 @@ public class TasksController {
 	@Qualifier("TasksService")
 	TasksService tasksService;
 
-	ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_IGNORED_PROPERTIES, false);
+	private Logger log = LoggerFactory.getLogger(this.getClass());
+	private ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_IGNORED_PROPERTIES, false);
 
 	@RequestMapping(path = "tarea", method = RequestMethod.POST)
 	public @ResponseBody boolean registrarTarea(@RequestBody String tareaJSON) {
@@ -57,7 +60,7 @@ public class TasksController {
 		}
 	}
 
-	@RequestMapping(path = "tarea", method = RequestMethod.DELETE)
+	@RequestMapping(path = "tareas", method = RequestMethod.DELETE)
 	public @ResponseBody boolean borrarTarea(@RequestBody String tareaJSON) {
 		try {
 			if (tareaJSON != null) {
@@ -66,18 +69,19 @@ public class TasksController {
 			}
 			return false;
 		} catch (Exception ex) {
+			
 			return false;
 		}
 	}
 
 	@RequestMapping(path = "tarea", method = RequestMethod.GET)
-    public @ResponseBody
-    List<Tarea> listaTareas() {
-        try {
-                return tasksService.listaTareas();
-        }
-        catch (Exception ex) {
-            return null;
-        }
+	public @ResponseBody 
+	List<Tarea> listaTareas() {
+		try {
+			return tasksService.listaTareas();
+		} catch (Exception ex) {
+			log.error("ERROR" + ex.getMessage());
+			return null;
+		}
 	}
 }

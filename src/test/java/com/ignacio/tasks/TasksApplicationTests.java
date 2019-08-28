@@ -10,16 +10,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.support.AnnotationConfigContextLoader;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import com.ignacio.tasks.Entity.Tarea;
 import com.ignacio.tasks.Service.TasksService;
 
-//@RunWith(SpringRunner.class)
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = TasksApplication.class, loader = AnnotationConfigContextLoader.class)
+@RunWith(SpringRunner.class)
+//@RunWith(SpringJUnit4ClassRunner.class)
+//@ContextConfiguration(classes = TasksApplication.class, loader = AnnotationConfigContextLoader.class)
+@SpringBootTest
 public class TasksApplicationTests {
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 
@@ -28,9 +28,9 @@ public class TasksApplicationTests {
 	private TasksService service;
 
 	@Test
-	public void addTareas() {
+	public void addTask() {
 		try {
-			Tarea tareas = new Tarea(1, "Titulo Nota", "Descripcion Nota", Date.valueOf("2019-08-27"));
+			Tarea tareas = new Tarea(2, "Titulo Nota", "Descripcion Nota", Date.valueOf("2019-08-27"));
 			if (service.addTask(tareas)) {
 				log.info("Se agrego la tarea correctamente: ");
 			} else {
@@ -45,7 +45,7 @@ public class TasksApplicationTests {
 	@Test
 	public void deleteTareas() {
 		try {
-			Tarea tareas = service.getTask(1);
+			Tarea tareas = service.getTask(2);
 			if (service.deleteTask(tareas)) {
 				log.info("Se borro la tarea :\n" + tareas.toString());
 			} else {
@@ -60,9 +60,9 @@ public class TasksApplicationTests {
 	@Test
 	public void updateTareas() {
 		try {
-			Tarea tareas = new Tarea(1, "Titulo Nota edit", "Descripcion Nota", Date.valueOf("2019-08-27"));
+			Tarea tareas = new Tarea(1, " edit", "Descripcion Nota", Date.valueOf("2019-08-27"));
 
-			if (service.getTask(6) != null) {
+			if (service.getTask(1) != null) {
 				service.updateTask(tareas);
 				log.info("Se actualizo la tarea correctamente :\n" + tareas.toString());
 			} else {

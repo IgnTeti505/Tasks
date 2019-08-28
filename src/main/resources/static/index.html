@@ -7,7 +7,7 @@
     <title>Tasks</title>
     <link rel="stylesheet" href="assets/libs/bootstrap/bootstrap.min.css">    
 </head>
-<body ng-controller="tareaCtrl">
+<body >
     <div class="container">
         <h1>TAREAS</h1>
 
@@ -18,7 +18,7 @@
         </div>
 
         <div class="row">
-            <div class="col">
+            <div class="col" ng-controller="tareaCtrl">
                 <table class="table table-dark">
                         <thead>
                             <tr>
@@ -29,24 +29,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
+                            <tr ng-repeat="task in tareas">
+                                <!-- <th scope="row">{{ task.id }}</th> -->
+                                <td>{{ task.id }}</td>
+                                <td>{{ task.titulo }}</td>                                
+                                <td>{{ task.descripcion }}</td>
+                                <td>{{ task.fecha }}</td>
                             </tr>
-                            <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                            </tr>
-                            <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                            </tr>
+                            
                         </tbody>
                         </table>
             </div>
@@ -90,7 +80,10 @@
     <script src="app/modulos/app.js"></script>
     <!-- Factories -->
     <script src="app/factories/factory.js"></script>
+    <!-- Services -->
+    <script src="app/services/tareaService.js"></script>
     <!-- Controllers angular js -->
     <script src="app/controladores/tareaCtrl.js"></script>
+    s
 </body>
 </html>

@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 import com.sun.istack.NotNull;
 
@@ -16,7 +17,7 @@ import com.sun.istack.NotNull;
 public class Tarea {
 
 	@Id
-	@Column(name = "ID")
+//	@Column(name = "ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
@@ -32,16 +33,23 @@ public class Tarea {
 	@Column(name = "FECHA")
 	private Date fecha;
 
-	public Tarea(int id, String titulo, String descripcion, Date fecha) {
+	public Tarea() { }
+	
+	public Tarea(String titulo, String descripcion, Date fecha) {
+		super();
+		this.titulo = titulo;
+		this.descripcion = descripcion;
+		this.fecha = fecha;
+	}
+	
+	public Tarea(int id, @NotNull @Size(min = 2, max = 120) String titulo, String descripcion, @NotNull Date fecha) {
 		this.id = id;
 		this.titulo = titulo;
 		this.descripcion = descripcion;
 		this.fecha = fecha;
 	}
 
-	public Tarea() {
-
-	}
+	
 
 	public int getId() {
 		return id;
@@ -67,10 +75,6 @@ public class Tarea {
 		this.descripcion = descripcion;
 	}
 
-	@Override
-	public String toString() {
-		return "Tearea [id=" + id + ", titulo=" + titulo + ", descripcion=" + descripcion + ", fecha=" + fecha + "]";
-	}
 
 	public Date getFecha() {
 		return fecha;
@@ -78,6 +82,13 @@ public class Tarea {
 
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
+	}
+
+	
+	
+	@Override
+	public String toString() {
+		return "Tearea [id=" + id + ", titulo=" + titulo + ", descripcion=" + descripcion + ", fecha=" + fecha + "]";
 	}
 	
 }

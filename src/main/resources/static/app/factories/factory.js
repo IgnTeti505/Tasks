@@ -1,4 +1,4 @@
-// Servici que se ocupa
+// Servicios que se ocuparan
 // factory
 APP.factory("factory", function ($http, $q) {
     return {
