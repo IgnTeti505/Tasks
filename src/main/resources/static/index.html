@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-ng-app="AppTasks">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Tasks</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/libs/bootstrap/bootstrap.min.css">    
 </head>
-<body>
+<body ng-controller="tareaCtrl">
     <div class="container">
         <h1>TAREAS</h1>
 
@@ -72,6 +72,7 @@
                    
                     <div class="form-group">
                         <p>Descripcion</p>
+                        {{suma}}
                         <textarea name="descripcion" style="resize: none;" id="descripcion" cols="100" rows="10" rez></textarea>
                     </div>
                     
@@ -81,8 +82,15 @@
             </div>
         </div>
     </div>
-
-
-    <script src="js/bootstrap.min.js"></script>
+    <script src="assets/libs/angular/angular.min.js"></script>    
+    <script src="assets/libs/jquery/jquery-3.4.1.min.js"></script>
+    <script src="assets/libs/bootstrap/bootstrap.min.js"></script>
+    
+    <!-- Angular modulos -->
+    <script src="app/modulos/app.js"></script>
+    <!-- Factories -->
+    <script src="app/factories/factory.js"></script>
+    <!-- Controllers angular js -->
+    <script src="app/controladores/tareaCtrl.js"></script>
 </body>
 </html>
