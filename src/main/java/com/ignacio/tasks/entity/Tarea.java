@@ -1,6 +1,6 @@
 package com.ignacio.tasks.entity;
 
-import java.time.LocalDate;
+import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,8 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
 
 import com.sun.istack.NotNull;
@@ -32,20 +30,19 @@ public class Tarea {
 
 	@NotNull
 	@Column(name = "FECHA")
-	@Temporal(TemporalType.DATE)
-
-	private LocalDate fecha;
+//	@Temporal(TemporalType.DATE)
+	private Date fecha;
 
 	public Tarea() { }
 	
-	public Tarea(String titulo, String descripcion, LocalDate fecha) {
+	public Tarea(String titulo, String descripcion, Date fecha) {
 		super();
 		this.titulo = titulo;
 		this.descripcion = descripcion;
 		this.fecha = fecha;
 	}
 	
-	public Tarea(int id, @NotNull @Size(min = 2, max = 120) String titulo, String descripcion, @NotNull LocalDate fecha) {
+	public Tarea(int id, @NotNull @Size(min = 2, max = 120) String titulo, String descripcion, @NotNull Date fecha) {
 		this.id = id;
 		this.titulo = titulo;
 		this.descripcion = descripcion;
@@ -76,11 +73,11 @@ public class Tarea {
 		this.descripcion = descripcion;
 	}
 
-	public LocalDate getFecha() {
+	public Date getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(LocalDate fecha) {
+	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
 	

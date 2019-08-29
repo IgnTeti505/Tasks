@@ -14,7 +14,11 @@ APP.factory("factory", function ($http, $q) {
             )
         },
         post: function (url, data) {
-            return $http({ url: '/' + url, method: 'POST', headers: { 'Content-Type': 'application/json' }, data: data }).then(
+            return $http({ 
+                url: '/' + url, 
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' }, 
+                data: data }).then(
                 (success) => {
                     return success.data;
                 },

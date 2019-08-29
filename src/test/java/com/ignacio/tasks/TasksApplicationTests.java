@@ -30,17 +30,17 @@ public class TasksApplicationTests {
 
 	@Test
 	public void addTask() {
-		try {
-			Tarea tareas = new Tarea("java time x2", "java time Nota", LocalDate.of(2019, 8, 9));
-			if (service.addTask(tareas)) { 
-				log.info("Se agrego la tarea correctamente: ");
-			} else {
-				log.warn("No fue posible agregar la tarea");
-			}
-
-		} catch (Exception e) {
-			log.error("ERROR: " + e.getMessage());
-		}
+//		try {
+//			Tarea tareas = new Tarea("java time x2", "java time Nota", Date.of(2019, 8, 9));
+//			if (service.addTask(tareas)) { 
+//				log.info("Se agrego la tarea correctamente: ");
+//			} else {
+//				log.warn("No fue posible agregar la tarea");
+//			}
+//
+//		} catch (Exception e) {
+//			log.error("ERROR: " + e.getMessage());
+//		}
 	}
 
 	@Test
@@ -60,18 +60,18 @@ public class TasksApplicationTests {
 
 	@Test
 	public void updateTareas() {
-		try {
-			Tarea tareas = new Tarea(1, " edit", "edit", LocalDate.of(2019,8,9));
-
-			if (service.getTask(1) != null) {
-				service.updateTask(tareas);
-				log.info("Se actualizo la tarea correctamente :\n" + tareas.toString());
-			} else {
-				log.warn("No fue posible actualizar la tarea");
-			}
-		} catch (Exception e) {
-			log.error("ERROR: " + e.getMessage());
-		}
+//		try {
+//			Tarea tareas = new Tarea(1, " edit", "edit", LocalDate.of(2019,8,9));
+//
+//			if (service.getTask(1) != null) {
+//				service.updateTask(tareas);
+//				log.info("Se actualizo la tarea correctamente :\n" + tareas.toString());
+//			} else {
+//				log.warn("No fue posible actualizar la tarea");
+//			}
+//		} catch (Exception e) {
+//			log.error("ERROR: " + e.getMessage());
+//		}
 	}
 
 	@Test

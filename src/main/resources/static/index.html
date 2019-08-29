@@ -1,81 +1,96 @@
 <!DOCTYPE html>
 <html lang="en" data-ng-app="AppTasks">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Tasks</title>
-    <link rel="stylesheet" href="assets/libs/bootstrap/bootstrap.min.css">    
+    <link rel="stylesheet" href="assets/libs/bootstrap/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">     -->
+    <link rel="stylesheet" href="assets/css/estilos.css">
 </head>
-<body >
-    <div class="container">
-        <h1>TAREAS</h1>
 
+<body ng-controller="tareaCtrl">
+    <div class="container">
+        <div class="col">
+            {{suma}}
+        </div>
         <div class="row">
-            <div class="col">
-                tabla
-            </div>
+                <h1>TAREAS</h1>
         </div>
 
-        <div class="row">
-            <div class="col" ng-controller="tareaCtrl">
-                <table class="table table-dark">
-                        <thead>
-                            <tr>
+        <div class="row" ng-show="!task">
+            <div class="col-10">
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
                             <th scope="col">ID</th>
                             <th scope="col">TITULO</th>
                             <th scope="col">DESCRIPCION</th>
                             <th scope="col">FECHA</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="task in tareas">
-                                <!-- <th scope="row">{{ task.id }}</th> -->
-                                <td>{{ task.id }}</td>
-                                <td>{{ task.titulo }}</td>                                
-                                <td>{{ task.descripcion }}</td>
-                                <td>{{ task.fecha | date: "MM/dd/yyyy" }}</td>
-                            </tr>
-                            
-                        </tbody>
-                        </table>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="task in tareas">
+                            <td>{{ task.id }}</td>
+                            <td>{{ task.titulo }}</td>
+                            <td>{{ task.descripcion }}</td>
+                            <td>{{ task.fecha }}
+                                <div class="botones btn btn-outline-warning ml-5 mr-2" ng-click="btnEditar(task)"> <i
+                                        class="fa fa-edit"></i> </div>
+                                <div class="botones btn btn-outline-danger" ng-click="btnBorrar(task)"> <i
+                                        class="fa fa-trash"></i> </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
+            <div class="col-12">
+                <div class="botones btn btn-success" ng-click=btnAgregar()>Agregar nueva tarea</div>
+            </div>
+
         </div>
 
-        <div class="row">
+        <div class="row" ng-show="task">
             <div class="col">
-                <form>
+                <form id="myForm" name="formTask" ng-submit="submitForm(formTask)">
                     <div class="row">
                         <div class="col-6">
                             <div class="form-group">
                                 <label for="titulo">Titulo</label>
-                                <input type="tet" class="form-control" id="titulo" aria-describedby="titulo" placeholder="Introduce el titulo de la nueva tarea">                            </div>
-                        </div>
-                        
-                        <div class="col-6">
-                            <div class="form-group">
-                                <label for="fecha">Fecha</label>
-                                <input type="date" class="form-control" id="descripcion" >
+                                <input type="text" class="form-control" id="titulo" aria-describedby="titulo"
+                                    placeholder="Introduce el titulo de la nueva tarea" ng-model="task.titulo">
                             </div>
                         </div>
                     </div>
-                   
+
                     <div class="form-group">
                         <p>Descripcion</p>
-                        {{suma}}
-                        <textarea name="descripcion" style="resize: none;" id="descripcion" cols="100" rows="10" rez></textarea>
+                        <textarea name="descripcion" style="resize: none;" id="descripcion" cols="100" rows="10"
+                            ng-model="task.descripcion"></textarea>
                     </div>
-                    
-                    
-                    <button type="submit" class="btn btn-success btn-lg ">Agregar Tarea</button>
+
+
+                    <button type="submit"
+                        class="btn btn-success btn-lg">{{ task.id ? 'Editar Tarea' : 'Agregar Tarea' }}</button>
+                    <div class="botones btn btn-primary btn-large" ng-click=mostrarDatos()>Mostrar Tareas</div>
                 </form>
             </div>
         </div>
     </div>
-    <script src="assets/libs/angular/angular.min.js"></script>    
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                this is a col
+            </div>
+        </div>
+    </div>
+    <script src="assets/libs/angular/angular.min.js"></script>
     <script src="assets/libs/jquery/jquery-3.4.1.min.js"></script>
     <script src="assets/libs/bootstrap/bootstrap.min.js"></script>
-    
+
     <!-- Angular modulos -->
     <script src="app/modulos/app.js"></script>
     <!-- Factories -->
@@ -84,6 +99,6 @@
     <script src="app/services/tareaService.js"></script>
     <!-- Controllers angular js -->
     <script src="app/controladores/tareaCtrl.js"></script>
-    s
 </body>
+
 </html>

@@ -14,40 +14,40 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ignacio.tasks.entity.Tarea;
-import com.ignacio.tasks.service.TasksService;
+import com.ignacio.tasks.entity.Usuario;
+import com.ignacio.tasks.service.UsuariosService;
 
 @RestController
 @RequestMapping(path = "/")
-public class TasksController {
-
+public class UsersController {
+	
 	@Autowired
-	@Qualifier("TasksService")
-	TasksService tasksService;
-
+	@Qualifier("UsuariosService")
+	UsuariosService usuariosService;
+	
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 	private ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_IGNORED_PROPERTIES, false);
 	
-	@RequestMapping(path = "tarea", method = RequestMethod.GET)
+	@RequestMapping(path = "usuario", method = RequestMethod.GET)
 	public @ResponseBody 
-	List<Tarea> listaTareas() {
+	List<Usuario> listaUsuarios() {
 		try {
-			return tasksService.listaTareas();
+			return usuariosService.listaUsuarios(1);
 		} catch (Exception ex) {
 			log.error("ERROR" + ex.getMessage());
 			return null;
 		}
 	}
 
-	@RequestMapping(path = "tarea", method = RequestMethod.POST)
+	@RequestMapping(path = "usuario", method = RequestMethod.POST)
 	public @ResponseBody boolean registrarTarea(@RequestBody String tareaJSON) {
 		System.out.println(tareaJSON);
 		try {
-			Tarea tarea = new Tarea();
-			tarea = mapper.readValue(tareaJSON, Tarea.class);
+			Usuario usuario = new Usuario();
+			usuario = mapper.readValue(tareaJSON, Usuario.class);
 
 			
-			if (tasksService.addTask(tarea)) {
+			if (usuariosService.addUser(usuario)) {
 				return true;
 			}
 			return false;
@@ -56,14 +56,14 @@ public class TasksController {
 		}
 	}
 
-	@RequestMapping(path = "tarea", method = RequestMethod.PUT)
+	@RequestMapping(path = "usuario", method = RequestMethod.PUT)
 	public @ResponseBody boolean actualizarTarea(@RequestBody String tareaJSON) {
 		try {
-			Tarea tarea = new Tarea();
+			Usuario usuario = new Usuario();
 
-			tarea = mapper.readValue(tareaJSON, Tarea.class);
+			usuario = mapper.readValue(tareaJSON, Usuario.class);
 
-			if (tasksService.updateTask(tarea)) {
+			if (usuariosService.updateUser(usuario)) {
 				return true;
 			}
 			return false;
@@ -72,12 +72,12 @@ public class TasksController {
 		}
 	}
 
-	@RequestMapping(path = "tarea", method = RequestMethod.DELETE)
+	@RequestMapping(path = "usuario", method = RequestMethod.DELETE)
 	public @ResponseBody boolean borrarTarea(@RequestBody String tareaJSON) {
 		try {
 			if (tareaJSON != null) {
-				Tarea tarea = mapper.readValue(tareaJSON, Tarea.class);
-				return tasksService.deleteTask(tarea);
+				Usuario usuario = mapper.readValue(tareaJSON, Usuario.class);
+				return usuariosService.deleteUser(usuario);
 			}
 			return false;
 		} catch (Exception ex) {
@@ -85,4 +85,6 @@ public class TasksController {
 			return false;
 		}
 	}
+
+
 }
