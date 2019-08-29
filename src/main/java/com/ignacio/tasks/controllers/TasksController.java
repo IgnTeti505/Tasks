@@ -1,4 +1,4 @@
-package com.ignacio.tasks.Controllers;
+package com.ignacio.tasks.controllers;
 
 import java.util.List;
 
@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ignacio.tasks.Entity.Tarea;
-import com.ignacio.tasks.Service.TasksService;
+import com.ignacio.tasks.entity.Tarea;
+import com.ignacio.tasks.service.TasksService;
 
 @RestController
 @RequestMapping(path = "/")

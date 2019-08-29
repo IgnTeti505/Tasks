@@ -1,6 +1,7 @@
 package com.ignacio.tasks;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,8 +14,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.ignacio.tasks.Entity.Tarea;
-import com.ignacio.tasks.Service.TasksService;
+import com.ignacio.tasks.entity.Tarea;
+import com.ignacio.tasks.service.TasksService;
 
 @RunWith(SpringRunner.class)
 //@RunWith(SpringJUnit4ClassRunner.class)
@@ -30,8 +31,8 @@ public class TasksApplicationTests {
 	@Test
 	public void addTask() {
 		try {
-			Tarea tareas = new Tarea(2, "Titulo Nota", "Descripcion Nota", Date.valueOf("2019-08-27"));
-			if (service.addTask(tareas)) {
+			Tarea tareas = new Tarea("java time x2", "java time Nota", LocalDate.of(2019, 8, 9));
+			if (service.addTask(tareas)) { 
 				log.info("Se agrego la tarea correctamente: ");
 			} else {
 				log.warn("No fue posible agregar la tarea");
@@ -60,7 +61,7 @@ public class TasksApplicationTests {
 	@Test
 	public void updateTareas() {
 		try {
-			Tarea tareas = new Tarea(1, " edit", "Descripcion Nota", Date.valueOf("2019-08-27"));
+			Tarea tareas = new Tarea(1, " edit", "edit", LocalDate.of(2019,8,9));
 
 			if (service.getTask(1) != null) {
 				service.updateTask(tareas);

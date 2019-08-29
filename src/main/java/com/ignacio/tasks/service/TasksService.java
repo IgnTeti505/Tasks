@@ -1,8 +1,8 @@
-package com.ignacio.tasks.Service;
+package com.ignacio.tasks.service;
 
 import java.util.List;
 
-import com.ignacio.tasks.Entity.Tarea;
+import com.ignacio.tasks.entity.Tarea;
 
 public interface TasksService {
 

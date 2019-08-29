@@ -34,7 +34,7 @@
                                 <td>{{ task.id }}</td>
                                 <td>{{ task.titulo }}</td>                                
                                 <td>{{ task.descripcion }}</td>
-                                <td>{{ task.fecha }}</td>
+                                <td>{{ task.fecha | date: "MM/dd/yyyy" }}</td>
                             </tr>
                             
                         </tbody>

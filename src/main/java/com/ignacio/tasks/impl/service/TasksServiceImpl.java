@@ -7,9 +7,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ignacio.tasks.Entity.Tarea;
-import com.ignacio.tasks.Repository.TasksRepository;
-import com.ignacio.tasks.Service.TasksService;
+import com.ignacio.tasks.entity.Tarea;
+import com.ignacio.tasks.repository.TasksRepository;
+import com.ignacio.tasks.service.TasksService;
 
 @Service("TasksService")
 public class TasksServiceImpl implements TasksService {
