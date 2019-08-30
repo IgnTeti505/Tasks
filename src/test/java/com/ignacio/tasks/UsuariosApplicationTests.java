@@ -21,6 +21,21 @@ public class UsuariosApplicationTests {
 	@Autowired
 	@Qualifier("UsuariosService")
 	private UsuariosService service;
+	
+	@Test
+    public void login() {
+        try{
+            Usuario usuario = new Usuario("igo","pass");
+        	
+            if (service.login(usuario) != null){
+                log.info("ingreso");
+            }else{
+                log.warn("no se encontro");
+            }
+        }catch (Exception ex){
+            log.error(ex.getMessage());
+        }
+    }
 
 	@Test
 	public void addUsuario() {

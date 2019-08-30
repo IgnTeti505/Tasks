@@ -10,4 +10,6 @@ public interface UsuariosService {
     public boolean deleteUser(Usuario usuario);
     public Usuario getUser(int userId);
 	List<Usuario> listaUsuarios(int status);    
+	
+	public Usuario login(Usuario usuario);
 }

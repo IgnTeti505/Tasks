@@ -1,54 +1,121 @@
-APP.service('tareaService', function($q, factory)  {
-    const SELF = this;
-    // nombre del restController
-    const PATH = 'usuario';
+APP.controller('usuarioCtrl', function ($scope, usuarioService) {
+    $scope.usuarios = {}
 
-    SELF.get = () => {
-        return $q((success, error) => {
-            factory.get(PATH).then(
-                (resolve) => {
-                    success(resolve)
-                },
-                (reject) => {
-                    error(reject)
-                })
-        })
+    // Prepara datos para insertar datos
+    $scope.btnAgregarUsuario = function () {
+        // btn agregar ususario
+        $scope.user = {
+            status: 1
+        }
     }
-    // recibe url y data
-    SELF.post = (tarea) => {
-        return $q((success, error) => {
-            factory.post(PATH, tarea).then(
-                (resolve) => {
-                    success(resolve)
-                },
-                (reject) => {
-                    error(reject)
-                })
-        })
+
+
+    $scope.editarUsuario = function (user) {
+        $scope.user = user
     }
-    SELF.put = (tarea) => {
-        return $q((success, error) => {
-            factory.put(PATH, tarea).then(
-                (resolve) => {
-                    success(resolve)
-                },
-                (reject) => {
-                    error(reject)
-                }
-            )
-        })
+
+
+    $scope.mostrarDatos = function () {
+        $scope.user = null
     }
-    SELF.delete = (tarea) => {
-        return $q((success, error) => {
-            factory.delete(PATH, tarea).then(
-                (resolve) => {
-                    success(resolve)
-                },
-                (reject) => {
-                    error(reject)
-                }
-            )
-        })
+
+    
+    // VALIDA
+    $scope.submitFormUsuario = function (valid) {
+        if(valid){
+            if ($scope.user.id) {
+                console.log("Editar")
+                $scope.putUsuario()
+                
+            } else {
+                console.log("Agregar")
+                $scope.postUsuario()
+            }
+        }
     }
-    // realizar conttrolador y terminar el REST
+    
+    // GET
+    $scope.getUsuario = function () {
+        usuarioService.get().then(
+            (data) => {
+                console.log("Ctrl: ", data);
+                $scope.usuarios = data;
+            },
+            (reject) => {
+                console.log("Ctrl: ", reject);
+            });
+    }
+
+    // POST
+    $scope.postUsuario = function () {
+        usuarioService.post($scope.user).then(
+            (data) => {
+                console.log("Ctrl: ", data);
+                document.getElementById("myFormUser").reset();
+                $scope.getUsuario()
+            },
+            (reject) => {
+                console.log("Ctrl: ", reject);
+            });
+        INITCONTROLLER()
+        $scope.user = null
+    }
+
+    // PUT
+    $scope.putUsuario = function (user) {
+        console.log("editando", user)
+        usuarioService.put($scope.user).then(
+            (data) => {
+                console.log("Ctrl: ", data);
+                document.getElementById("myFormUser").reset();
+                $scope.getUsuario()
+                $scope.user = null
+            },
+            (reject) => {
+                console.log("Ctrl: reject", reject);
+            });
+    }
+
+    // DELETE
+    $scope.deleteUsuario = function (user) {
+        console.log("borrando...", user)
+        // $scope.taskEliminar = task
+
+        usuarioService.delete(user).then(
+            (data) => {
+                console.log("Ctrl: ", data);
+                $scope.getUsuario()
+                user = null;
+            },
+            (reject) => {
+                console.log("Ctrl: ", reject.data.message.toString());
+            });
+    }
+
+
+    $scope.btnBorrar = function (task) {
+        console.log("borrando...", task)
+        // $scope.taskEliminar = task
+
+        tareaService.delete(task).then(
+            (data) => {
+                console.log("Ctrl: ", data);
+                $scope.obtenerTareas()
+                task = null;
+            },
+            (reject) => {
+                console.log("Ctrl: ", reject.data.message.toString());
+            });
+    }
+
+
+
+    const INITCONTROLLER = function () {
+        $scope.getUsuario()
+    }
+
+    angular.element(document).ready(function () {
+        INITCONTROLLER();
+    })
+
 })

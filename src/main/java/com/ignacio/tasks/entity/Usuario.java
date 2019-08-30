@@ -41,7 +41,13 @@ public class Usuario {
 	
 	public Usuario() { }
 	
-	
+
+	public Usuario(String usuario, String contrasenia) {
+		super();
+		this.usuario = usuario;
+		this.contrasenia = contrasenia;
+	}
+
 
 	public Usuario(String nombre, String usuario, String contrasenia, @NotNull @Size(min = 2, max = 120) String correo, @NotNull int status) {
 		super();
@@ -67,55 +73,81 @@ public class Usuario {
 		return id;
 	}
 
+
+
 	public void setId(int id) {
 		this.id = id;
 	}
 
-	public String getTitulo() {
+
+
+	public String getNombre() {
 		return nombre;
 	}
 
-	public void setTitulo(String titulo) {
-		this.nombre = titulo;
+
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
-	public String getDescripcion() {
+
+
+	public String getUsuario() {
 		return usuario;
 	}
 
-	public void setDescripcion(String descripcion) {
-		this.usuario = descripcion;
+
+
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
 	}
+
+
 
 	public String getContrasenia() {
 		return contrasenia;
 	}
 
+
+
 	public void setContrasenia(String contrasenia) {
 		this.contrasenia = contrasenia;
 	}
+
+
 
 	public String getCorreo() {
 		return correo;
 	}
 
+
+
 	public void setCorreo(String correo) {
 		this.correo = correo;
 	}
+
+
 
 	public int getStatus() {
 		return status;
 	}
 
+
+
 	public void setStatus(int status) {
 		this.status = status;
 	}
 
+
 	@Override
 	public String toString() {
-		return "Usuario [id=" + id + ", titulo=" + nombre + ", descripcion=" + usuario + ", contrasenia="
-				+ contrasenia + ", correo=" + correo + ", status=" + status + "]";
+		return "Usuario [id=" + id + ", nombre=" + nombre + ", usuario=" + usuario + ", contrasenia=" + contrasenia
+				+ ", correo=" + correo + ", status=" + status + "]";
 	}
+
+
+
 
 	
 }

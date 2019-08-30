@@ -5,18 +5,14 @@ APP.controller('tareaCtrl', function ($scope, tareaService) {
 
     $scope.btnAgregar = function () {
         $scope.task = {
-            fecha: new Date(),
-
+            fecha: new Date()
         }
     }
-
 
     $scope.btnEditar = function (task) {
         $scope.task = task
         console.log("editar", $scope.task)
     }
-
-
     
     // VALIDA
     $scope.submitForm = function (valid) {
@@ -85,7 +81,7 @@ APP.controller('tareaCtrl', function ($scope, tareaService) {
 
         tareaService.delete(task).then(
             (data) => {
-                console.log("Ctrl: ", data);
+                console.log("Ctrl: delete ->", data);
                 $scope.obtenerTareas()
                 task = null;
             },

@@ -38,6 +38,17 @@ public class UsersController {
 			return null;
 		}
 	}
+	
+	@RequestMapping(path = "login", method = RequestMethod.POST)
+    public @ResponseBody
+    Usuario login(@RequestBody Usuario usuarioJSON){
+        try{
+            return usuariosService.login(usuarioJSON);
+        }catch (Exception ex){
+            log.error("ERROR: "+ex.getMessage());
+            return null;
+        }
+	}
 
 	@RequestMapping(path = "usuario", method = RequestMethod.POST)
 	public @ResponseBody boolean registrarTarea(@RequestBody String tareaJSON) {

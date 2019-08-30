@@ -73,7 +73,7 @@ public class UsuariosServiceImpl implements UsuariosService {
 		try {
 			if (usuarioID > 0) {
 				log.info("Se consulto: ID: " + usuarioID);
-				return usersRepository.findById(usuarioID).get();
+				return usersRepository.findById(usuarioID).get(usuarioID);
 			}
 			return null;
 		} catch (Exception ex) {
@@ -93,5 +93,25 @@ public class UsuariosServiceImpl implements UsuariosService {
 		}
 		return null;
 	}
+	
+	@Override
+	public Usuario login(Usuario usuario) {
+			try {
+				if(usuario != null) {
+				Usuario user =	usersRepository.login(usuario.getUsuario());
+					log.info("se encontrooooo: " + usuario.toString());
+					log.info("USER: " + user);
+					if(usuario.getContrasenia().equals(user.getContrasenia())) {
+						return user;
+					} else {
+						log.info("NO RETURN");
+					}
+	                
+				}
+				return null;
+			}catch(Exception ex) {
+				return null;
+			}
+		}
 
 }

@@ -1,7 +1,6 @@
 package com.ignacio.tasks;
 
 import java.sql.Date;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,17 +29,17 @@ public class TasksApplicationTests {
 
 	@Test
 	public void addTask() {
-//		try {
-//			Tarea tareas = new Tarea("java time x2", "java time Nota", Date.of(2019, 8, 9));
-//			if (service.addTask(tareas)) { 
-//				log.info("Se agrego la tarea correctamente: ");
-//			} else {
-//				log.warn("No fue posible agregar la tarea");
-//			}
-//
-//		} catch (Exception e) {
-//			log.error("ERROR: " + e.getMessage());
-//		}
+		try {
+			Tarea tareas = new Tarea("java time x2", "java time Nota", Date.valueOf("2019-09-02") );
+			if (service.addTask(tareas)) { 
+				log.info("Se agrego la tarea correctamente: ");
+			} else {
+				log.warn("No fue posible agregar la tarea");
+			}
+
+		} catch (Exception e) {
+			log.error("ERROR: " + e.getMessage());
+		}
 	}
 
 	@Test

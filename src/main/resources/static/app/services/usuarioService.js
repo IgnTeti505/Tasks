@@ -1,4 +1,4 @@
-APP.service('tareaService', function($q, factory)  {
+APP.service('usuarioService', function($q, factory)  {
     const SELF = this;
     // nombre del restController
     const PATH = 'usuario';
@@ -15,9 +15,9 @@ APP.service('tareaService', function($q, factory)  {
         })
     }
     // recibe url y data
-    SELF.post = (tarea) => {
+    SELF.post = (usuario) => {
         return $q((success, error) => {
-            factory.post(PATH, tarea).then(
+            factory.post(PATH, usuario).then(
                 (resolve) => {
                     success(resolve)
                 },
@@ -26,9 +26,9 @@ APP.service('tareaService', function($q, factory)  {
                 })
         })
     }
-    SELF.put = (tarea) => {
+    SELF.put = (usuario) => {
         return $q((success, error) => {
-            factory.put(PATH, tarea).then(
+            factory.put(PATH, usuario).then(
                 (resolve) => {
                     success(resolve)
                 },
@@ -38,9 +38,9 @@ APP.service('tareaService', function($q, factory)  {
             )
         })
     }
-    SELF.delete = (tarea) => {
+    SELF.delete = (usuario) => {
         return $q((success, error) => {
-            factory.delete(PATH, tarea).then(
+            factory.delete(PATH, usuario).then(
                 (resolve) => {
                     success(resolve)
                 },
