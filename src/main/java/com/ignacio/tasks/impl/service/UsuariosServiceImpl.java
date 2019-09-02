@@ -94,19 +94,6 @@ public class UsuariosServiceImpl implements UsuariosService {
 //		}
 //	}
 	
-	@Override
-	public Usuario findById(int usuarioID) {
-		try {
-			if (usuarioID > 0) {
-				log.info("Se consulto: ID: " + usuarioID);
-				return usersRepository.findById(usuarioID).get();
-			}
-			return null;
-		} catch (Exception ex) {
-			log.error("ERROR: " + ex.getMessage());
-			return null;
-		}
-	}
 
 	@Override
 	public Usuario login(Usuario usuario) {

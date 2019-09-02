@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ignacio.tasks.entity.Tarea;
+import com.ignacio.tasks.entity.Usuario;
 import com.ignacio.tasks.service.TasksService;
 
 @RestController
@@ -38,6 +39,28 @@ public class TasksController {
 			return null;
 		}
 	}
+	
+	@RequestMapping(path = "tareaUsuario", method = RequestMethod.GET)
+	public @ResponseBody 
+	List<Tarea> listaById(int id) {
+		try {
+			return tasksService.listaById(id);
+		} catch (Exception ex) {
+			log.error("ERROR" + ex.getMessage());
+			return null;
+		}
+	}
+	
+//	@RequestMapping(path = "userTasks", method = RequestMethod.POST)
+//	public @ResponseBody 
+//	List<Tarea> listById(int usuarioId) {
+//		try {
+//			return tasksService.tasksById(usuarioId);
+//		} catch (Exception ex) {
+//			log.error("ERROR" + ex.getMessage());
+//			return null;
+//		}
+//	}
 
 	@RequestMapping(path = "tarea", method = RequestMethod.POST)
 	public @ResponseBody boolean registrarTarea(@RequestBody String tareaJSON) {

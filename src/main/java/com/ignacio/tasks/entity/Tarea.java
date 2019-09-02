@@ -56,6 +56,17 @@ public class Tarea {
 		this.fecha = fecha;
 	}
 	
+	
+	
+	public Tarea(int id, String titulo, String descripcion, Date fecha, Usuario usuario) {
+		super();
+		this.id = id;
+		this.titulo = titulo;
+		this.descripcion = descripcion;
+		this.fecha = fecha;
+		this.usuario = usuario;
+	}
+
 	public Usuario getUsuario() {
 		return usuario;
 	}

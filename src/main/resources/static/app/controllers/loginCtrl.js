@@ -8,10 +8,11 @@ APP.controller('loginCtrl', function ($scope, $location, loginService, sessionSt
             (data) => {
                 console.log("Ctrl: ", data);
                 sessionStorageFactory.save('usuario', data);
+                $location.path("/tareas")
                 console.log("session:", sessionStorageFactory.get('usuario'))
             },
             (reject) => {
-                console.log("Ctrl: ", reject);
+            console.log("Ctrl: ", reject);
             });
         
     }

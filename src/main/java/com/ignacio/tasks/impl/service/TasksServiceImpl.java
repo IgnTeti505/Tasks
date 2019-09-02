@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ignacio.tasks.entity.Tarea;
+import com.ignacio.tasks.entity.Usuario;
 import com.ignacio.tasks.repository.TasksRepository;
 import com.ignacio.tasks.service.TasksService;
 
@@ -18,6 +19,16 @@ public class TasksServiceImpl implements TasksService {
 
 	@Autowired
 	public TasksRepository tasksRepository;
+	
+	@Override
+	public List<Tarea> listaById(int id) {
+		try {
+			return (List<Tarea>) tasksRepository.findByUsuario_Id(id);
+		} catch (Exception ex) {
+			log.error("ERROR: " + ex.getMessage());
+		}
+		return null;
+	}
 
 	@Override
 	public boolean addTask(Tarea tarea) {

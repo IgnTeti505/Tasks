@@ -1,12 +1,14 @@
-APP.controller('tareaCtrl', function ($scope, tareaService) {
+APP.controller('tareaCtrl', function ($scope, tareaService, sessionStorageFactory) {
     $scope.suma = 2 + 2;
 
     $scope.tareas = {}
+    const SESSION =  sessionStorageFactory.get('usuario')
 
     $scope.btnAgregar = function () {
         $scope.task = {
             fecha: new Date()
         }
+        
     }
 
     $scope.btnEditar = function (task) {
@@ -52,7 +54,7 @@ APP.controller('tareaCtrl', function ($scope, tareaService) {
                 $scope.obtenerTareas()
             },
             (reject) => {
-                console.log("Ctrl: ", reject);
+                console.log("Ctrl POST fallo: ", reject);
             });
         INITCONTROLLER()
         $scope.task = null
