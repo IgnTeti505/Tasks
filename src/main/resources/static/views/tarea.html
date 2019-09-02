@@ -1,0 +1,68 @@
+<div class="container" ng-controller="tareaCtrl">
+    <div class="col">
+        {{suma}}
+    </div>
+    <div class="row">
+        <h1>TAREAS</h1>
+    </div>
+
+    <div class="row" ng-show="!task">
+        <div class="col-10">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">TITULO</th>
+                        <th scope="col">DESCRIPCION</th>
+                        <th scope="col">FECHA</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="task in tareas">
+                        <td>{{ task.id }}</td>
+                        <td>{{ task.titulo }}</td>
+                        <td>{{ task.descripcion }}</td>
+                        <td>{{ task.fecha }}
+                            <div class="botones btn btn-outline-warning ml-5 mr-2" ng-click="btnEditar(task)"> <i
+                                    class="fa icon-pencil"></i> </div>
+                            <div class="botones btn btn-outline-danger" ng-click="btnBorrar(task)"> <i
+                                    class="fa icon-trash"></i> </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-12">
+            <div class="botones btn btn-success" ng-click=btnAgregar()>Agregar nueva tarea</div>
+        </div>
+
+    </div>
+
+    <!-- FORMULARIO TAREA -->
+    <div class="row" ng-show="task">
+        <div class="col">
+            <form id="myForm" name="formTask" ng-submit="submitForm(formTask)">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="titulo">Titulo</label>
+                            <input type="text" class="form-control" id="titulo" aria-describedby="titulo"
+                                placeholder="Introduce el titulo de la nueva tarea" ng-model="task.titulo">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <p>Descripcion</p>
+                    <textarea name="descripcion" style="resize: none;" id="descripcion" cols="100" rows="10"
+                        ng-model="task.descripcion"></textarea>
+                </div>
+
+
+                <button type="submit"
+                    class="btn btn-success btn-lg">{{ task.id ? 'Editar Tarea' : 'Agregar Tarea' }}</button>
+                <div class="botones btn btn-primary btn-large" ng-click=mostrarDatos()>Mostrar Tareas</div>
+            </form>
+        </div>
+    </div>
+</div>

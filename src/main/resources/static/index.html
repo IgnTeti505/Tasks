@@ -12,7 +12,11 @@
 </head>
 
 <body>
-    <div class="container" ng-controller="tareaCtrl">
+    {{suma}}
+    <div ng-view></div>
+
+
+    <!-- <div class="container" ng-controller="tareaCtrl">
         <div class="col">
             {{suma}}
         </div>
@@ -50,7 +54,7 @@
 
         </div>
 
-        <!-- FORMULARIO TAREA -->
+        FORMULARIO TAREA
         <div class="row" ng-show="task">
             <div class="col">
                 <form id="myForm" name="formTask" ng-submit="submitForm(formTask)">
@@ -77,7 +81,7 @@
                 </form>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <!-- <div class="container" ng-controller="usuarioCtrl">
         <div class="row">
@@ -167,20 +171,23 @@
 
     </div> -->
 
-    <script src="assets/libs/angular/angular.min.js"></script>
-    <script src="assets/libs/jquery/jquery-3.4.1.min.js"></script>
     <script src="assets/libs/bootstrap/bootstrap.min.js"></script>
+    <script src="assets/libs/jquery/jquery-3.4.1.min.js"></script>
+    <script src="assets/libs/angular/angular.min.js"></script>
+    <script src="assets/libs/angular/angular-route.js"></script>
 
     <!-- Angular modulos -->
-    <script src="app/modulos/app.js"></script>
+    <script src="app/modules/app.js"></script>
     <!-- Factories -->
     <script src="app/factories/factory.js"></script>
     <!-- Services -->
     <script src="app/services/tareaService.js"></script>
     <script src="app/services/usuarioService.js"></script>
-    <!-- Controllers angular js -->
-    <script src="app/controladores/tareaCtrl.js"></script>
-    <script src="app/controladores/usuarioCtrl.js"></script>
+    <script src="app/services/loginService.js"></script>
+    <!-- Controllers -->
+    <script src="app/controllers/tareaCtrl.js"></script>
+    <script src="app/controllers/usuarioCtrl.js"></script>
+    <script src="app/controllers/loginCtrl.js"></script>
 </body>
 
 </html>

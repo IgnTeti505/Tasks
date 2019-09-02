@@ -1,0 +1,25 @@
+    <div class="log container d-flex justify-content-center" ng-controller="loginCtrl">
+        <div class="row">
+            <div class="col mt-5">
+                <h1>Iniciar Sesión</h1>
+                <form name="formLogin" ng-submit=submitFormUser(formLogin)>
+                    <div class="row">
+                        <label for="usuario">Usuario</label>
+                        <input type="text" class="form-control" id="usuario" ng-model="user.usuario" >
+                    </div>
+                    <div class="row">
+                        <label for="pass">Contraseña</label>
+                        <input type="password" class="form-control" id="pass" ng-model="user.pass">
+                    </div>
+                    <div class="row">
+                        <button type="submit"  class="btn btn-success mt-2 btn-large">Login</button>
+                    </div>
+                </form>
+
+                <p class="texto-registrate">
+                    ¿ Aun no tienes cuenta ?
+                    <a ng-href="#!registro">Registrate</a>
+                  </p>
+            </div>
+        </div>
+    </div>

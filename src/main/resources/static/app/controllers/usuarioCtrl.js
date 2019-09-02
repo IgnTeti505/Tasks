@@ -1,5 +1,8 @@
 APP.controller('usuarioCtrl', function ($scope, usuarioService) {
     $scope.usuarios = {}
+    // $scope.user = {
+    //     status: 1
+    // }
 
     // Prepara datos para insertar datos
     $scope.btnAgregarUsuario = function () {

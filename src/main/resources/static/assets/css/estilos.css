@@ -1,3 +1,11 @@
 .botones {
     cursor: pointer;
 }
+
+.border {
+    border: none;
+    margin-bottom: 5px;
+    border-top: 10x solid B8711B;
+    background: none;
+    color: none;
+}

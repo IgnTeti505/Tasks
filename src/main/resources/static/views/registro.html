@@ -1,0 +1,45 @@
+<!-- FORMULARIO REGISTRARSE -->
+<div class="container d-flex justify-content-center" ng-controller="usuarioCtrl">
+    <div class="row">
+        <div class="col mt-3 mb-2">
+            <h1>Registrarse</h1>
+            <form name="formUser" ng-submit="submitFormUsuario(formUser)">
+                <div class="row">
+                    <div class="form-group">
+                        <!-- <label for="titulo">Nombre</label> -->
+                        <input type="text" class="form-control" id="nombre" aria-describedby="nombre"
+                            placeholder="Nombre" ng-model="user.nombre">
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="form-group">
+                        <!-- <label for="usuario">Usuario</label> -->
+                        <input type="text" class="form-control" id="usuario" aria-describedby="usuario"
+                            placeholder="Usuario" ng-model="user.usuario">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group">
+                        <!-- <label for="correo">Correo</label> -->
+                        <input type="email" class="form-control" id="correo" aria-describedby="correo"
+                            placeholder="Correo" ng-model="user.correo">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group">
+                        <!-- <label for="contrasenia">Contraseña</label> -->
+                        <input type="password" class="form-control" id="contrasenia" aria-describedby="contrasenia"
+                            placeholder="Contraseña" ng-model="user.contrasenia">
+                    </div>
+                </div>
+                {{ user.status = 1 }}
+
+                <button type="submit" class="btn btn-success btn-lg" ng-mouseover="">Registrarse</button>
+            </form>
+        </div>
+    </div>
+</div>
