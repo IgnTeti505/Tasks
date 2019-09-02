@@ -12,8 +12,8 @@ import com.ignacio.tasks.entity.Usuario;
 
 @Repository("UsersRepository")
 public interface UsersRepository extends CrudRepository<Usuario, Serializable> {
-	List<Usuario> findByStatus(int status);
-	List<Usuario> findById(int id);
+//	List<Usuario> findByStatus(int status);
+//	List<Usuario> findById(int id);
 	
 	
 	@Query(value = "SELECT * FROM usuario WHERE usuario = :usuario", nativeQuery = true)

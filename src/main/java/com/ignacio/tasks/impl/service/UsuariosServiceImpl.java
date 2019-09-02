@@ -18,6 +18,18 @@ public class UsuariosServiceImpl implements UsuariosService {
 
 	@Autowired
 	public UsersRepository usersRepository;
+	
+	@Override
+	public List<Usuario> listaUsuarios(int status) {
+
+		try {
+			log.info("Lista de ususarios\n");
+			return (List<Usuario>) usersRepository.findAll();
+		} catch (Exception ex) {
+			log.error("ERROR: " + ex.getMessage());
+		}
+		return null;
+	}
 
 	@Override
 	public boolean addUser(Usuario usuario) {
@@ -68,12 +80,26 @@ public class UsuariosServiceImpl implements UsuariosService {
 		}
 	}
 
+//	@Override
+//	public Usuario getUser(int usuarioID) {
+//		try {
+//			if (usuarioID > 0) {
+//				log.info("Se consulto: ID: " + usuarioID);
+//				return usersRepository.findById(usuarioID).get(usuarioID);
+//			}
+//			return null;
+//		} catch (Exception ex) {
+//			log.error("ERROR: " + ex.getMessage());
+//			return null;
+//		}
+//	}
+	
 	@Override
-	public Usuario getUser(int usuarioID) {
+	public Usuario findById(int usuarioID) {
 		try {
 			if (usuarioID > 0) {
 				log.info("Se consulto: ID: " + usuarioID);
-				return usersRepository.findById(usuarioID).get(usuarioID);
+				return usersRepository.findById(usuarioID).get();
 			}
 			return null;
 		} catch (Exception ex) {
@@ -83,25 +109,13 @@ public class UsuariosServiceImpl implements UsuariosService {
 	}
 
 	@Override
-	public List<Usuario> listaUsuarios(int status) {
-
-		try {
-			log.info("Lista de ususarios\n");
-			return (List<Usuario>) usersRepository.findByStatus(status);
-		} catch (Exception ex) {
-			log.error("ERROR: " + ex.getMessage());
-		}
-		return null;
-	}
-	
-	@Override
 	public Usuario login(Usuario usuario) {
 			try {
 				if(usuario != null) {
 				Usuario user =	usersRepository.login(usuario.getUsuario());
 					log.info("se encontrooooo: " + usuario.toString());
 					log.info("USER: " + user);
-					if(usuario.getContrasenia().equals(user.getContrasenia())) {
+					if(user.getContrasenia().equals(usuario.getContrasenia())) {
 						return user;
 					} else {
 						log.info("NO RETURN");

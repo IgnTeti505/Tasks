@@ -15,7 +15,7 @@ APP.controller('loginCtrl', function ($scope, loginService) {
     $scope.submitFormUser = function (valid) {
         console.log("funcion login...")
         if(valid){
-            if ($scope.user.usuario && $scope.user.pass) {
+            if ($scope.user.usuario && $scope.user.contrasenia) {
                 console.log("usuario & pass ok")
                 $scope.postLogin()
             } else {
