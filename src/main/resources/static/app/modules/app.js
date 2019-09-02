@@ -3,7 +3,7 @@ const APP = angular.module("AppTasks", ["ngRoute"]);
 
 
 // constantes, values, router... todo lo que tiene que ver con congiguraciones
-APP.config(function($routeProvider) {
+APP.config(function($routeProvider) {  
     $routeProvider
     .when("/", {
         templateUrl: "views/login.html",

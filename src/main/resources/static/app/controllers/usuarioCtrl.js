@@ -51,9 +51,10 @@ APP.controller('usuarioCtrl', function ($scope, usuarioService) {
 
     // POST
     $scope.postUsuario = function () {
+    	$scope.user.status = 1;
         usuarioService.post($scope.user).then(
             (data) => {
-                console.log("Ctrl: ", data);
+                
                 document.getElementById("myFormUser").reset();
                 $scope.getUsuario()
             },

@@ -1,10 +1,14 @@
-APP.controller('loginCtrl', function ($scope, loginService) {
+APP.controller('loginCtrl', function ($scope, $location, loginService, sessionStorageFactory) {
+    // app.controller('myCtrl',['storageService',function(storageService) {
+
     // POST
     // $scope.user = { }
     $scope.postLogin = function () {
         loginService.post($scope.user).then(
             (data) => {
                 console.log("Ctrl: ", data);
+                sessionStorageFactory.save('usuario', data);
+                console.log("session:", sessionStorageFactory.get('usuario'))
             },
             (reject) => {
                 console.log("Ctrl: ", reject);

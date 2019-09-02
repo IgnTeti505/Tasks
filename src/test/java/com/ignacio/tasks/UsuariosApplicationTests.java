@@ -52,18 +52,18 @@ public class UsuariosApplicationTests {
 		}
 	}
 
-	@Test
-	public void deleteUsuarios() {
-		try {
-			Usuario usuarios = service.getUser(2);
-			if (service.deleteUser(usuarios)) {
-				log.info("Se borro el usario:\n" + usuarios.toString());
-			} else {
-				log.warn("No fue posible borrar el usario");
-			}
-
-		} catch (Exception e) {
-			log.error("ERROR: " + e.getMessage());
-		}
-	}
+//	@Test
+//	public void deleteUsuarios() {
+//		try {
+//			Usuario usuarios = service.getUser(2);
+//			if (service.deleteUser(usuarios)) {
+//				log.info("Se borro el usario:\n" + usuarios.toString());
+//			} else {
+//				log.warn("No fue posible borrar el usario");
+//			}
+//
+//		} catch (Exception e) {
+//			log.error("ERROR: " + e.getMessage());
+//		}
+//	}
 }
