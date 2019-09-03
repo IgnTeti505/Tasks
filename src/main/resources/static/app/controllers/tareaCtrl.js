@@ -1,8 +1,8 @@
-APP.controller('tareaCtrl', function ($scope, tareaService, sessionStorageFactory) {
+APP.controller('tareaCtrl', function ($scope, $location, tareaService, sessionStorageFactory) {
     $scope.suma = 2 + 2;
 
     $scope.tareas = {}
-    const SESSION =  sessionStorageFactory.get('usuario')
+    // let sesion =  sessionStorageFactory.get('usuario')
 
     $scope.btnAgregar = function () {
         $scope.task = {
@@ -14,6 +14,12 @@ APP.controller('tareaCtrl', function ($scope, tareaService, sessionStorageFactor
     $scope.btnEditar = function (task) {
         $scope.task = task
         console.log("editar", $scope.task)
+    }
+
+    // BORRA SESION E IR A INICIO
+    $scope.deleteSession = function() {
+        sessionStorageFactory.remove('usuario')
+        $location.path("/")
     }
     
     // VALIDA
@@ -35,18 +41,22 @@ APP.controller('tareaCtrl', function ($scope, tareaService, sessionStorageFactor
     
     // GET
     $scope.obtenerTareas = function () {
-        tareaService.get().then(
+        $scope.user = sessionStorageFactory.get('usuario')
+        console.log("usuario_GEt", $scope.user)
+        tareaService.getById($scope.user.id).then(
             (data) => {
                 console.log("Ctrl: ", data);
                 $scope.tareas = data;
             },
             (reject) => {
-                console.log("Ctrl: ", reject);
+                console.log("Ctrl: fallo get", reject);
             });
     }
 
     // POST
     $scope.agregarTarea = function () {
+        // $scope.task.fecha = new Date();
+        $scope.task.id_usuario = sessionStorageFactory.get('usuario');
         tareaService.post($scope.task).then(
             (data) => {
                 console.log("Ctrl: ", data);

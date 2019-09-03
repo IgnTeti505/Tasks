@@ -13,6 +13,20 @@ APP.factory("factory", function ($http, $q) {
                 }
             )
         },
+        getById: function(url, data) {
+            return $http({
+                url: '/' + url,
+                method: 'GET',
+                params: {id: data}
+                }).then(
+                    (success) => {
+                        return success.data;
+                    },
+                    (error) => {
+                        return $q.reject(error)
+                    }
+                )
+        },
         post: function (url, data) {
             return $http({ 
                 url: '/' + url, 
