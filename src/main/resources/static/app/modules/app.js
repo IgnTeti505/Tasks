@@ -17,6 +17,9 @@ APP.config(function($routeProvider) {
     .when("/usuarios", {
         templateUrl: "views/usuario.html",
     })
+    // .when("/demo", {
+    //     templateUrl: "views/app.html",
+    // })
     .otherwise({
         redirectTo: '/'
     });
