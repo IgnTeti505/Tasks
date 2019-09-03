@@ -1,4 +1,7 @@
-var stompClient = null;
+let stompClient = null;
+
+APP.controller('chatCtrl', function ($scope, $location, tareaService, sessionStorageFactory) {
+
 
 function setConnected(connected) {
     $("#connect").prop("disabled", connected);
@@ -47,4 +50,5 @@ $(function () {
     $( "#connect" ).click(function() { connect(); });
     $( "#disconnect" ).click(function() { disconnect(); });
     $( "#send" ).click(function() { sendName(); });
+})
 });

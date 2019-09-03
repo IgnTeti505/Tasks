@@ -15,10 +15,14 @@
     {{suma}}
     <div ng-view></div>
 
-    <script src="assets/libs/bootstrap/bootstrap.min.js"></script>
     <script src="assets/libs/jquery/jquery-3.4.1.min.js"></script>
+    <script src="assets/libs/bootstrap/bootstrap.min.js"></script>
     <script src="assets/libs/angular/angular.js"></script>
     <script src="assets/libs/angular/angular-route.js"></script>
+
+    <!-- WEB SOCKET -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.js"></script>
 
     <!-- Angular modulos -->
     <script src="app/modules/app.js"></script>
@@ -33,6 +37,7 @@
     <script src="app/controllers/tareaCtrl.js"></script>
     <script src="app/controllers/usuarioCtrl.js"></script>
     <script src="app/controllers/loginCtrl.js"></script>
+    <script src="app/controllers/chatCtrl.js"></script>
 </body>
 
 </html>
