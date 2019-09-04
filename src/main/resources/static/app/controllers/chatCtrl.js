@@ -1,173 +1,108 @@
-// let stompClient = null;
-
 APP.controller('chatCtrl', function ($scope, $location, tareaService, sessionStorageFactory) {
 
+    let chatPage = document.querySelector('#chat-page');
+    let messageArea = document.querySelector('#messageArea');
+    let connectingElement = document.querySelector('.connecting');
+    let colors = [
+        '#2196F3', '#32c787', '#00BCD4', '#ff5652',
+        '#ffc107', '#ff85af', '#FF9800', '#39bbb0'
+    ];
+    let user = sessionStorageFactory.get('usuario');
+    let username = user.usuario
+    let stompClient = null;
 
-// function setConnected(connected) {
-//     $("#connect").prop("disabled", connected);
-//     $("#disconnect").prop("disabled", !connected);
-//     if (connected) {
-//         $("#conversation").show();
-//     }
-//     else {
-//         $("#conversation").hide();
-//     }
-//     $("#greetings").html("");
-// }
-
-// function connect() {
-//     var socket = new SockJS('/gs-guide-websocket');
-//     stompClient = Stomp.over(socket);
-//     stompClient.connect({}, function (frame) {
-//         setConnected(true);
-//         console.log('Connected: ' + frame);
-//         stompClient.subscribe('/topic/greetings', function (greeting) {
-//             showGreeting(JSON.parse(greeting.body).content);
-//         });
-//     });
-// }
-
-// function disconnect() {
-//     if (stompClient !== null) {
-//         stompClient.disconnect();
-//     }
-//     setConnected(false);
-//     console.log("Disconnected");
-// }
-
-// function sendName() {
-//     stompClient.send("/app/hello", {}, JSON.stringify({'name': $("#name").val()}));
-// }
-
-// function showGreeting(message) {
-//     $("#greetings").append("<tr><td>" + message + "</td></tr>");
-// }
-
-// $(function () {
-//     $("form").on('submit', function (e) {
-//         e.preventDefault();
-//     });
-//     $( "#connect" ).click(function() { connect(); });
-//     $( "#disconnect" ).click(function() { disconnect(); });
-//     $( "#send" ).click(function() { sendName(); });
-// })
-
-
-var usernamePage = document.querySelector('#username-page');
-var chatPage = document.querySelector('#chat-page');
-var usernameForm = document.querySelector('#usernameForm');
-var messageForm = document.querySelector('#messageForm');
-var messageInput = document.querySelector('#message');
-var messageArea = document.querySelector('#messageArea');
-var connectingElement = document.querySelector('.connecting');
-
-var stompClient = null;
-var username = null;
-
-var colors = [
-    '#2196F3', '#32c787', '#00BCD4', '#ff5652',
-    '#ffc107', '#ff85af', '#FF9800', '#39bbb0'
-];
-
-function connect(event) {
-    username = document.querySelector('#name').value.trim();
-
-    if(username) {
-        usernamePage.classList.add('hidden');
+    // SI SESION ACTIVA
+    if (username) {
+        // usernamePage.classList.add('hidden');
         chatPage.classList.remove('hidden');
 
-        var socket = new SockJS('/ws');
+        let socket = new SockJS('/ws');
         stompClient = Stomp.over(socket);
 
         stompClient.connect({}, onConnected, onError);
-    }
-    event.preventDefault();
-}
-
-
-function onConnected() {
-    // Subscribe to the Public Topic
-    stompClient.subscribe('/topic/public', onMessageReceived);
-
-    // Tell your username to the server
-    stompClient.send("/app/chat.addUser",
-        {},
-        JSON.stringify({sender: username, type: 'JOIN'})
-    )
-
-    connectingElement.classList.add('hidden');
-}
-
-
-function onError(error) {
-    connectingElement.textContent = 'Could not connect to WebSocket server. Please refresh this page to try again!';
-    connectingElement.style.color = 'red';
-}
-
-
-function sendMessage(event) {
-    var messageContent = messageInput.value.trim();
-    if(messageContent && stompClient) {
-        var chatMessage = {
-            sender: username,
-            content: messageInput.value,
-            type: 'CHAT'
-        };
-        stompClient.send("/app/chat.sendMessage", {}, JSON.stringify(chatMessage));
-        messageInput.value = '';
-    }
-    event.preventDefault();
-}
-
-
-function onMessageReceived(payload) {
-    var message = JSON.parse(payload.body);
-
-    var messageElement = document.createElement('li');
-
-    if(message.type === 'JOIN') {
-        messageElement.classList.add('event-message');
-        message.content = message.sender + ' joined!';
-    } else if (message.type === 'LEAVE') {
-        messageElement.classList.add('event-message');
-        message.content = message.sender + ' left!';
     } else {
-        messageElement.classList.add('chat-message');
-
-        var avatarElement = document.createElement('i');
-        var avatarText = document.createTextNode(message.sender[0]);
-        avatarElement.appendChild(avatarText);
-        avatarElement.style['background-color'] = getAvatarColor(message.sender);
-
-        messageElement.appendChild(avatarElement);
-
-        var usernameElement = document.createElement('span');
-        var usernameText = document.createTextNode(message.sender);
-        usernameElement.appendChild(usernameText);
-        messageElement.appendChild(usernameElement);
+        console.log("sesion no activa")
+        $location.path("/")
     }
 
-    var textElement = document.createElement('p');
-    var messageText = document.createTextNode(message.content);
-    textElement.appendChild(messageText);
+    // SUSCRIBIENDOSE AL SOCKET
+    function onConnected () {
+        // Subscribe to the Public Topic
+        stompClient.subscribe('/topic/public', onMessageReceived);
 
-    messageElement.appendChild(textElement);
-
-    messageArea.appendChild(messageElement);
-    messageArea.scrollTop = messageArea.scrollHeight;
-}
-
-
-function getAvatarColor(messageSender) {
-    var hash = 0;
-    for (var i = 0; i < messageSender.length; i++) {
-        hash = 31 * hash + messageSender.charCodeAt(i);
+        // Tell your username to the server
+        stompClient.send("/app/chat.addUser", {},
+            JSON.stringify({
+                sender: username,
+                type: 'JOIN'
+            })
+        )
+        connectingElement.classList.add('hidden');
     }
-    var index = Math.abs(hash % colors.length);
-    return colors[index];
-}
 
-usernameForm.addEventListener('submit', connect, true)
-messageForm.addEventListener('submit', sendMessage, true)
+    // ERROR DE AL SUSCRIBIRSE AL SOCKET
+    function onError(error) {
+        connectingElement.textContent = 'Could not connect to WebSocket server. Please refresh this page to try again!';
+        connectingElement.style.color = 'red';
+    }
+
+    function onMessageReceived(payload) {
+        let message = JSON.parse(payload.body);
+
+        let messageElement = document.createElement('li');
+
+        if (message.type === 'JOIN') {
+            messageElement.classList.add('event-message');
+            message.content = message.sender + ' se ha unido!';
+        } else if (message.type === 'LEAVE') {
+            messageElement.classList.add('event-message');
+            message.content = message.sender + ' salió!';
+        } else {
+            messageElement.classList.add('chat-message');
+
+            let avatarElement = document.createElement('i');
+            let avatarText = document.createTextNode(message.sender[0]);
+            avatarElement.appendChild(avatarText);
+            avatarElement.style['background-color'] = getAvatarColor(message.sender);
+
+            messageElement.appendChild(avatarElement);
+
+            let usernameElement = document.createElement('span');
+            let usernameText = document.createTextNode(message.sender);
+            usernameElement.appendChild(usernameText);
+            messageElement.appendChild(usernameElement);
+        }
+
+        let textElement = document.createElement('p');
+        let messageText = document.createTextNode(message.content);
+        textElement.appendChild(messageText);
+
+        messageElement.appendChild(textElement);
+
+        messageArea.appendChild(messageElement);
+        messageArea.scrollTop = messageArea.scrollHeight;
+    }
+
+    $scope.sendMessage = function () {
+        $scope.messageContent.trim();
+        if ($scope.messageContent && stompClient) {
+            let chatMessage = {
+                sender: username,
+                content: $scope.messageContent,
+                type: 'CHAT'
+            };
+            stompClient.send("/app/chat.sendMessage", {}, JSON.stringify(chatMessage));
+            $scope.messageContent = '';
+        }
+    }
+
+    function getAvatarColor(messageSender) {
+        let hash = 0;
+        for (let i = 0; i < messageSender.length; i++) {
+            hash = 31 * hash + messageSender.charCodeAt(i);
+        }
+        let index = Math.abs(hash % colors.length);
+        return colors[index];
+    }
 
 });
