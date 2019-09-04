@@ -1,4 +1,4 @@
-package com.ignacio.tasks.hello;
+package com.ignacio.tasks.config;
 
 
 import org.springframework.context.annotation.Configuration;
@@ -19,7 +19,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/gs-guide-websocket").withSockJS();
+        registry.addEndpoint("/ws").withSockJS();
     }
 
 }

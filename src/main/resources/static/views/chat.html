@@ -1,16 +1,4 @@
-<!-- <!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="UTF-8">
-
-    <title>Hello WebSocket</title>
-    <link rel="stylesheet" href="../assets/libs/bootstrap/bootstrap.min.css">
-    <link href="main.css" rel="stylesheet">
-</head>
-
-<body> -->
-    <div id="main-content" class="container" ng-controller="chatCtrl">
+    <!-- <div id="main-content" class="container" ng-controller="chatCtrl">
         <div class="row">
             <div class="col-md-6">
                 <form class="form-inline">
@@ -45,12 +33,44 @@
                 </table>
             </div>
         </div>
-    </div>
-    <!-- <script src="../assets/libs/jquery/jquery-3.4.1.min.js"></script>
-    <script src="assets/libs/bootstrap/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.js"></script>
-    <script src="app.js"></script>
-</body>
+    </div> -->
 
-</html> -->
+    <noscript>
+        <h2>Sorry! Your browser doesn't support Javascript</h2>
+      </noscript>
+  
+      <div id="username-page" ng-controller="chatCtrl">
+          <div class="username-page-container">
+              <h1 class="title">Type your username</h1>
+              <form id="usernameForm" name="usernameForm">
+                  <div class="form-group">
+                      <input type="text" id="name" placeholder="Username" autocomplete="off" class="form-control" />
+                  </div>
+                  <div class="form-group">
+                      <button type="submit" class="accent username-submit">Start Chatting</button>
+                  </div>
+              </form>
+          </div>
+      </div>
+  
+      <div id="chat-page" class="hidden">
+          <div class="chat-container">
+              <div class="chat-header">
+                  <h2>Spring WebSocket Chat Demo</h2>
+              </div>
+              <div class="connecting">
+                  Connecting...
+              </div>
+              <ul id="messageArea">
+  
+              </ul>
+              <form id="messageForm" name="messageForm">
+                  <div class="form-group">
+                      <div class="input-group clearfix">
+                          <input type="text" id="message" placeholder="Type a message..." autocomplete="off" class="form-control"/>
+                          <button type="submit" class="primary">Send</button>
+                      </div>
+                  </div>
+              </form>
+          </div>
+      </div>

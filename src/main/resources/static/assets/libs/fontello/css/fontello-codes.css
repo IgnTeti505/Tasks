@@ -1,5 +1,10 @@
 
-.icon-flow-branch:before { content: '\e800'; } /* '' */
-.icon-pencil:before { content: '\e801'; } /* '' */
-.icon-trash:before { content: '\e802'; } /* '' */
-.icon-user:before { content: '\e803'; } /* '' */
+.icon-edit:before { content: '\e800'; } /* '' */
+.icon-trash-empty:before { content: '\e801'; } /* '' */
+.icon-right-open-outline:before { content: '\e802'; } /* '' */
+.icon-chat-alt:before { content: '\e803'; } /* '' */
+.icon-users:before { content: '\e804'; } /* '' */
+.icon-user:before { content: '\e805'; } /* '' */
+.icon-user-plus:before { content: '\f234'; } /* '' */
+.icon-user-times:before { content: '\f235'; } /* '' */
+.icon-sticky-note-o:before { content: '\f24a'; } /* '' */
